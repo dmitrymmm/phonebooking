@@ -1,3 +1,4 @@
+
 package com.example.phonebooking.service;
 
 import com.example.phonebooking.client.FonoapiClient;
@@ -17,6 +18,7 @@ public class PhoneServiceImpl implements PhoneService {
 
     public PhoneServiceImpl() {
         phones.put("Samsung Galaxy S9", new Phone("Samsung Galaxy S9", true, null, null, "4G", "GSM", "HSPA", "LTE"));
+        //TODO:This needs to be refactored/improved.
         phones.put("Samsung Galaxy S8_1", new Phone("Samsung Galaxy S8", true, null, null, "4G", "GSM", "HSPA", "LTE"));
         phones.put("Samsung Galaxy S8_2", new Phone("Samsung Galaxy S8", true, null, null, "4G", "GSM", "HSPA", "LTE"));
         phones.put("Motorola Nexus 6", new Phone("Samsung Galaxy S8", true, null, null, "4G", "GSM", "HSPA", "LTE"));
