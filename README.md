@@ -1,4 +1,4 @@
-# phonebooking
+# Phonebooking
 **Phone Booking Sample Application**
 
 This is Java 17 Spring Boot Applicartion. Please not that is was developed in 3-4 hours timeframe 
@@ -12,5 +12,4 @@ Functional Programming with Java Records: Using Java records for modeling immuta
 **Most Cumbersome Aspect**
 
 Error Handling and Validation: Ensuring robust error handling and input validation can be cumbersome but is critical for the application's reliability.
-
 Writing Comprehensive Tests.
