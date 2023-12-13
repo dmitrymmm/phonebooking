@@ -10,6 +10,7 @@ public class FonoapiClient {
     private final RestTemplate restTemplate = new RestTemplate();
     private final String apiUrl = "https://fonoapi.freshpixl.com/v1/getdevice";
 
+    // TODO: Refactoring, extensive testing, improved error handling
     public Phone updatePhoneSpecs(Phone phone) {
         try {
             PhoneSpecsDto specs = restTemplate.getForObject(apiUrl + "?device=" + phone.model(), PhoneSpecsDto.class);
