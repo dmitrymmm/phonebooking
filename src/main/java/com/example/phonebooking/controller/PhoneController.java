@@ -5,6 +5,8 @@ import com.example.phonebooking.service.PhoneService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/phones")
 public class PhoneController {
@@ -14,7 +16,7 @@ public class PhoneController {
         this.phoneService = phoneService;
     }
 
-    @PostMapping("/book/{model}")
+    @RequestMapping("/book/{model}")
     public ResponseEntity<String> bookPhone(@PathVariable String model, @RequestParam String user) {
         try {
             phoneService.bookPhone(model, user);
@@ -24,11 +26,11 @@ public class PhoneController {
         }
     }
 
-    @PostMapping("/return/{model}")
-    public ResponseEntity<String> returnPhone(@PathVariable String model) {
+    @RequestMapping("/return/{model}")
+    public ResponseEntity<String> returnPhone(@PathVariable String model, @RequestParam String user) {
         try {
-            phoneService.returnPhone(model);
-            return ResponseEntity.ok("Phone successfully returned");
+            phoneService.returnPhone(model, user);
+            return ResponseEntity.ok("Phone successfully returned by " + user);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error returning phone: " + e.getMessage());
         }
@@ -42,5 +44,23 @@ public class PhoneController {
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<Phone>> getAllPhones() {
+        List<Phone> phones = phoneService.getAllPhones();
+        return ResponseEntity.ok(phones);
+    }
+
+    @GetMapping("/booked")
+    public ResponseEntity<List<Phone>> getBookedPhones() {
+        List<Phone> phones = phoneService.getBookedPhones();
+        return ResponseEntity.ok(phones);
+    }
+
+    @GetMapping("/available")
+    public ResponseEntity<List<Phone>> getAvailablePhones() {
+        List<Phone> phones = phoneService.getAvailablePhones();
+        return ResponseEntity.ok(phones);
     }
 }

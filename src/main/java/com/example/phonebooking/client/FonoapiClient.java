@@ -12,8 +12,8 @@ public class FonoapiClient {
 
     public Phone updatePhoneSpecs(Phone phone) {
         try {
-            PhoneSpecsDto specs = restTemplate.getForObject(apiUrl + "?device=" + phone.model(), PhoneSpecsDto.class);
-            return new Phone(phone.model(), phone.isAvailable(), phone.bookedTime(), phone.bookedBy(),
+            PhoneSpecsDto specs = restTemplate.getForObject(apiUrl + "?device=" + phone.getModel(), PhoneSpecsDto.class);
+            return new Phone(phone.getModel(), phone.isAvailable(), phone.getBookedTime(), phone.getBookedBy(),
                     specs.getTechnology(), specs.getBands2g(), specs.getBands3g(), specs.getBands4g());
         } catch (Exception e) {
             return phone; // Return the original phone on failure at this stage
