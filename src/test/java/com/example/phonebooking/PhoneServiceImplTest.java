@@ -22,7 +22,7 @@ class PhoneServiceImplTest {
     }
 
     @Test
-    void bookPhoneSuccessfully() {
+    void bookPhoneSuccessfullyS9() {
         String model = "Samsung Galaxy S9";
         String user = "user1";
 
@@ -33,7 +33,7 @@ class PhoneServiceImplTest {
     }
 
     @Test
-    void bookPhoneFailureAlreadyBooked() {
+    void bookPhoneFailureAlreadyBookedS9() {
         String model = "Samsung Galaxy S9";
         String user = "user1";
 

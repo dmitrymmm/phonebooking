@@ -1,14 +1,14 @@
 # Phonebooking
 **Phone Booking Sample Application**
 
-This is Java 17 Spring Boot Applicartion. Please not that is was developed in 3-4 hours timeframe 
+This is Java 17 Spring Boot Application. Please note that is was developed in 3-4 hours timeframe 
 and is not a complete solution. It consists of application, services, endpoints and tests. Gradle is used 
-for build automation.
+for build automation. 
 
 **Most Interesting Aspect**
 
 Integration of Different Components: The most interesting part was integrating various components such as the service layer, RESTful controllers, and external API (Fonoapi) client.
-Functional Programming with Java Records: Using Java records for modeling immutable data.
+Functional Programming.
 
 **Most Cumbersome Aspect**
 
