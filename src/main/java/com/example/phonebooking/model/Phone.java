@@ -96,9 +96,6 @@ public class Phone {
     public Phone() {
     }
 
-    // Getters and setters
-    // ... (Generated for each field)
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
