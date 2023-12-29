@@ -75,7 +75,7 @@ public class PhoneServiceImpl implements PhoneService {
                     .filter(p -> !p.isAvailable() && p.getModel().equals(model)
                     && p.getBookedBy().equals(user))
                     .findFirst()
-                    .orElseThrow(() -> new RuntimeException("No booked phones for this model."));
+                    .orElseThrow(() -> new RuntimeException("No booked phones for this model and user."));
             phone.setAvailable(true);
             phone.setBookedBy(null);
             phone.setBookedTime(null);
