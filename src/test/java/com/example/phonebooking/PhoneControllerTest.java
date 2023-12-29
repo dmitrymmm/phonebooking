@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Component;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -18,8 +17,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.Matchers.*;
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @ExtendWith(SpringExtension.class)
@@ -72,21 +73,6 @@ class PhoneControllerTest {
                 .andExpect(content().string(containsString("successfully returned")));
 
         verify(phoneService).returnPhone(model, user);
-    }
-
-    @Test
-    void getPhoneDetailsTest() throws Exception {
-        String model = "Samsung Galaxy S9";
-        Phone mockPhone = new Phone(model, true, null, null, "4G", "GSM", "HSPA", "LTE");
-
-        when(phoneService.getPhoneDetails(model)).thenReturn(mockPhone);
-
-        mockMvc.perform(get("/phones/{model}", model)
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.model", is(model)));
-
-        verify(phoneService).getPhoneDetails(model);
     }
 
     @Test

@@ -1,6 +1,6 @@
 package com.example.phonebooking.service;
 
-import com.example.phonebooking.client.FonoapiClient;
+import com.example.phonebooking.client.FonoApiClient;
 import com.example.phonebooking.exception.PhoneNotFoundException;
 import com.example.phonebooking.model.Phone;
 import org.springframework.stereotype.Service;
@@ -19,7 +19,7 @@ public class PhoneServiceImpl implements PhoneService {
     private final ConcurrentHashMap<String, List<Phone>> phoneInventory = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<String, Lock> modelLocks = new ConcurrentHashMap<>();
 
-    private final FonoapiClient fonoapiClient = new FonoapiClient();
+    private final FonoApiClient fonoApiClient = new FonoApiClient();
 
     public PhoneServiceImpl() {
         addPhoneModel("Samsung Galaxy S9", new Phone("Samsung Galaxy S9", true, null, null, "4G", "GSM", "HSPA", "LTE"));
@@ -54,6 +54,8 @@ public class PhoneServiceImpl implements PhoneService {
             phone.setAvailable(false);
             phone.setBookedBy(user);
             phone.setBookedTime(LocalDateTime.now());
+            // Update phone specs upon booking
+            fonoApiClient.updatePhoneSpecs(phone);
             return phone;
         } finally {
             lock.unlock();
@@ -113,14 +115,8 @@ public class PhoneServiceImpl implements PhoneService {
     }
 
     @Override
-    public Phone getPhoneDetails(String model) {
-        // Use sample from the same phones inventory
-        Phone phone = phoneInventory.get(model).getFirst();
-        if (phone == null) {
-            throw new PhoneNotFoundException("Phone not found.");
-        }
-        // Update phone specs per fonapi
-        phone = fonoapiClient.updatePhoneSpecs(phone);
+    public Phone getPhoneDetails(Phone phone) {
+        fonoApiClient.updatePhoneSpecs(phone);
         return phone;
     }
 }

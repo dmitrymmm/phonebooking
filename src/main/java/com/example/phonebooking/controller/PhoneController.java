@@ -37,9 +37,12 @@ public class PhoneController {
     }
 
     @GetMapping("/{model}")
+    //TOTO: This is to be enhanced
     public ResponseEntity<?> getPhoneDetails(@PathVariable String model) {
         try {
-            Phone phone = phoneService.getPhoneDetails(model);
+            Phone phoneForModel = new Phone();
+            phoneForModel.setModel(model);
+            Phone phone = phoneService.getPhoneDetails(phoneForModel);
             return ResponseEntity.ok(phone);
         } catch (Exception e) {
             return ResponseEntity.notFound().build();

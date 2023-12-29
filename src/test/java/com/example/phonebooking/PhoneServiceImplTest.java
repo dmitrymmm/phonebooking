@@ -57,7 +57,9 @@ class PhoneServiceImplTest {
     @Test
     void getPhoneDetailsSuccessfully() {
         String model = "Samsung Galaxy S9";
-        Phone phone = phoneService.getPhoneDetails(model);
+        Phone testPhone = new Phone();
+        testPhone.setModel(model);
+        Phone phone = phoneService.getPhoneDetails(testPhone);
 
         assertNotNull(phone);
         assertEquals("Samsung Galaxy S9", phone.getModel());
